@@ -1,0 +1,24 @@
+{
+  "name": "app-protoify",
+  "version": "0.0.1",
+  "description": "`app-proto` tools for Node.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Debbie-Lab/app-protoify.git"
+  },
+  "keywords": [
+    "app-proto"
+  ],
+  "author": "solome",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Debbie-Lab/app-protoify/issues"
+  },
+  "homepage": "https://github.com/Debbie-Lab/app-protoify#readme"
+}
