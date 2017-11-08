@@ -10,11 +10,6 @@ export default class Assets {
   }
 
   deps (key, type) {
-    if (!prod) {
-      delete require.cache[require.resolve(ASSETS_DEPS_JSON)]
-      this.cache = require(ASSETS_DEPS_JSON)
-    }
-
     const suffix = type || 'js'
     if (!this.cache[key] || !this.cache[key][suffix]) {
       throw new ReferenceError(`["${key}"]["${suffix}"] is not in assets object.`)

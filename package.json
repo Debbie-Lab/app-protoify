@@ -1,6 +1,6 @@
 {
   "name": "app-protoify",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "`app-proto` tools for Node.",
   "main": "index.js",
   "dependencies": {},
