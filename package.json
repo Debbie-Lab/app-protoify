@@ -1,9 +1,14 @@
 {
   "name": "app-protoify",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "`app-proto` tools for Node.",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "glob": "^7.1.2",
+    "handlebars": "^4.0.11",
+    "module-alias": "^2.0.3"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
