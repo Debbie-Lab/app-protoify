@@ -1,6 +1,6 @@
 {
   "name": "@app-proto/ify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "app-proto scaffold utils.",
   "main": "index.js",
   "dependencies": {
@@ -30,6 +30,7 @@
     "svg-inline-loader": "^0.8.0",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.4.2",
+    "vue-template-compiler": "^2.5.17",
     "webpack": "^4.26.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-node-externals": "^1.7.2"
