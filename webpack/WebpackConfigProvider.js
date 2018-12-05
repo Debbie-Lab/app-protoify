@@ -3,6 +3,7 @@ const glob = require('glob')
 
 const getSubEntriesReg = require('./subEntriesReg')
 
+const getVueRules = require('./vueRules')
 const getScriptRules = require('./scriptRules')
 const getStyleRules = require('./styleRules')
 
@@ -30,6 +31,7 @@ class WebpackConfigProvider {
   defaultConfig () {
     this.collectCommonEntries()
       .setOutput()
+      .setVueRules()
       .setScriptRules()
       .setStyleRules()
       .setImageRules()
@@ -76,6 +78,14 @@ class WebpackConfigProvider {
         libraryTarget: 'commonjs2',
       }
     }
+    return this
+  }
+
+  // Vue
+  setVueRules () {
+    this.module.rules.push(getVueRules(this.node))
+    const VueLoaderPlugin = require('vue-loader/lib/plugin')
+    this.addPlugins(new VueLoaderPlugin())
     return this
   }
 

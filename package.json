@@ -1,6 +1,6 @@
 {
   "name": "@app-proto/ify",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "app-proto scaffold utils.",
   "main": "index.js",
   "dependencies": {
@@ -25,16 +25,22 @@
     "nunjucks": "^3.1.4",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.4.0",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "precss": "^4.0.0",
     "style-loader": "^0.23.1",
     "svg-inline-loader": "^0.8.0",
     "url-loader": "^1.1.2",
+    "vue-loader": "^15.4.2",
     "webpack": "^4.26.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-node-externals": "^1.7.2"
   },
   "devDependencies": {},
+  "peerDependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "vue": "^2.5.17",
+    "vue-server-renderer": "^2.5.17"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
