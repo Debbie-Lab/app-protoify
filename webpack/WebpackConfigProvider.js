@@ -6,9 +6,11 @@ const getSubEntriesReg = require('./subEntriesReg')
 const getVueRules = require('./vueRules')
 const getScriptRules = require('./scriptRules')
 const getStyleRules = require('./styleRules')
+const alias = require('../lib/resolve-alias').alias
 
 const app = process.env.APP || ''
 const mode = process.env.NODE_ENV ||'production' || 'development'
+const prod = mode === 'production'
 
 class WebpackConfigProvider {
 
@@ -24,6 +26,7 @@ class WebpackConfigProvider {
     this.mode = mode
     this.externals = []
     this.target = this.node ? 'node' : 'web'
+    this.resolve = { alias }
 
     this.defaultConfig()
   }
@@ -66,9 +69,9 @@ class WebpackConfigProvider {
 
     if (!this.node) {
       this.output = {
-        filename: '[name].js?[chunkhash:8]',
+        filename: prod ? '[name]-[chunkhash:8].js' : '[name].js?[chunkhash:8]',
         path: path.join(this.appConfig.appRootDir, '_webroot', webAssetsDir),
-        publicPath: path.resolve('/', webAssetsDir) + '/'
+        publicPath: path.resolve('/', webAssetsDir) + '/',
       }
     } else {
       this.output = {
@@ -143,8 +146,8 @@ class WebpackConfigProvider {
   }
 
   toWebpackConfig () {
-    const { entry, output, module, plugins, mode, target, externals } = this
-    return { entry, output, module, plugins, mode, target, externals }
+    const { entry, output, module, plugins, mode, target, externals, resolve } = this
+    return { entry, output, module, plugins, mode, target, externals, resolve }
   }
 }
 

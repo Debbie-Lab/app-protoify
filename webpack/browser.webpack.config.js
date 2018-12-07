@@ -5,6 +5,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const config = require('../lib/config')
 const WebpackConfigProvider = require('./WebpackConfigProvider')
+const prod = process.env.NODE_ENV === 'production'
 
 const webpackConfigProvider = new WebpackConfigProvider(config, 'Browser')
 
@@ -12,7 +13,7 @@ webpackConfigProvider
   .collectEntries('**/*\.page\.js', { cwd: path.join(config.appRootDir, 'resources', 'pages') })
   .addPlugins(new AssetsPlugin({ filename: '__deps__.json', path: config.appRootDir }))
   .addPlugins(new MiniCssExtractPlugin({
-    filename: '[name].css',
+    filename: prod ? '[name]-[hash:8].css' : '[name].css?[hash:8]',
     chunkFilename: '[id].css',
   }))
 

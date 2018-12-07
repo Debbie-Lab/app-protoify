@@ -1,5 +1,7 @@
 const precss = require('precss')
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const atImport = require('postcss-import')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const resolver = require('../lib/resolve-alias').resolver
 
 module.exports = function (node=false) {
   const loaders = node ? [ 'null-loader' ] : [
@@ -8,6 +10,11 @@ module.exports = function (node=false) {
     { loader: 'postcss-loader', options: {
       ident: 'postcss',
       plugins: () => [
+        atImport({
+          resolve (id, basedir) {
+            return resolver.resolveSync({}, basedir, id)
+          },
+        }),
         precss(),
       ]
     } },

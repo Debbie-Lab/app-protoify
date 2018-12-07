@@ -5,12 +5,6 @@ const isDirectory = require('../lib/utils').isDirectory
 const cwd = process.cwd()
 const root = path.join(cwd, 'resources')
 
-const alias = { '@root': root }
-
-fs.readdirSync(root)
-  .filter(f => isDirectory(path.resolve(root, f)))
-  .forEach(f => alias[`@${f}`] = path.resolve(root, f))
-
 module.exports = function (node=false) {
   const options = node ? {
     modules: false,
@@ -29,10 +23,6 @@ module.exports = function (node=false) {
         presets,
         plugins: [
           ['@babel/plugin-proposal-class-properties', { 'loose': true }],
-          ['module-resolver', {
-            root,
-            alias,
-          }]
         ],
       }
     },
