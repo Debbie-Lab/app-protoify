@@ -11,7 +11,7 @@ const webpackConfigProvider = new WebpackConfigProvider(config, 'Browser')
 
 webpackConfigProvider
   .collectEntries('**/*\.page\.js', { cwd: path.join(config.appRootDir, 'resources', 'pages') })
-  .addPlugins(new AssetsPlugin({ filename: '__deps__.json', path: config.appRootDir }))
+  .addPlugins(new AssetsPlugin({ filename: '__deps__.json', path: config.appRootDir, fullPath: false}))
   .addPlugins(new MiniCssExtractPlugin({
     filename: prod ? '[name]-[hash:8].css' : '[name].css?[hash:8]',
     chunkFilename: '[id].css',
