@@ -66,12 +66,13 @@ class WebpackConfigProvider {
 
   setOutput () {
     const webAssetsDir = this.appConfig.webpack['web-assets-dir'] || ''
+    const services = this.appConfig.services
 
     if (!this.node) {
       this.output = {
         filename: prod ? '[name]-[chunkhash:8].js' : '[name].js?[chunkhash:8]',
         path: path.join(this.appConfig.appRootDir, '_webroot', webAssetsDir),
-        publicPath: path.resolve('/', webAssetsDir) + '/',
+        publicPath: prod ? services.cdn : path.resolve('/', webAssetsDir) + '/',
       }
     } else {
       this.output = {
