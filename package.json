@@ -1,6 +1,6 @@
 {
   "name": "@app-proto/ify",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "app-proto scaffold utils.",
   "main": "index.js",
   "dependencies": {

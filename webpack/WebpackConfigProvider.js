@@ -72,7 +72,7 @@ class WebpackConfigProvider {
       this.output = {
         filename: prod ? '[name]-[chunkhash:8].js' : '[name].js?[chunkhash:8]',
         path: path.join(this.appConfig.appRootDir, '_webroot', webAssetsDir),
-        publicPath: prod ? services.cdn : path.resolve('/', webAssetsDir) + '/',
+        publicPath: (prod ? services.cdn : path.resolve('/', webAssetsDir)) + '/',
       }
     } else {
       this.output = {
@@ -95,7 +95,7 @@ class WebpackConfigProvider {
 
   // JavaScript
   setScriptRules () {
-    this.module.rules.push(getScriptRules(this.node))
+    this.module.rules.push(getScriptRules(this.node, this.appConfig.browserslist))
     return this
   }
 

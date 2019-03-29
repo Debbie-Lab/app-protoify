@@ -5,12 +5,12 @@ const isDirectory = require('../lib/utils').isDirectory
 const cwd = process.cwd()
 const root = path.join(cwd, 'resources')
 
-module.exports = function (node=false) {
+module.exports = function (node=false, targets) {
   const options = node ? {
     modules: false,
     useBuiltIns: "usage",
     targets: { node: "10.13.0" },
-  } : { targets: '> 0.25%, not dead' }
+  } : { targets: targets || '> 0.25%, not dead' }
 
   const presets = [ '@babel/react', ['@babel/env', options] ]
 
