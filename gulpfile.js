@@ -1,6 +1,6 @@
 const del = require('del')
 const path = require('path')
-const gulp = require('gulp')
+const { series, parallel } = require('gulp')
 const nodemon = require('nodemon')
 const webpack = require('webpack')
 
@@ -14,6 +14,13 @@ const serverWebpackConfig = require('./webpack/server.webpack.config')
 
 const logger = console.log
 
+function clean (cb) {
+  del([ serverWebpackConfig.output.path + '/**', browserWebpackConfig.output.path + '/**' ], {force: true})
+  cb()
+}
+
+exports.clean = clean
+
 const buildLogger = done => (err, stats) => {
   if (err) { logger('Error', err) }
   else {
@@ -22,16 +29,23 @@ const buildLogger = done => (err, stats) => {
   }
 }
 
-const webpackTask = (taskName, webpackConfig) => gulp.task(taskName, done => webpack(webpackConfig).run(buildLogger(done)))
-webpackTask('webpack@browser', browserWebpackConfig)
-webpackTask('webpack@server', serverWebpackConfig)
-gulp.task('webpack', ['webpack@browser', 'webpack@server'])
+function webpack4browser (cb) {
+  webpack(browserWebpackConfig).run(buildLogger(cb))
+}
+
+function webpack4server (cb) {
+  webpack(serverWebpackConfig).run(buildLogger(cb))
+}
+
+exports.webpack4browser = webpack4browser
+exports.webpack4server = webpack4server
+exports.webpack = parallel(webpack4browser, webpack4server)
+
 
 const browserBuild = Object.keys(browserWebpackConfig.entry).length !== 0 ? webpack(browserWebpackConfig) : null
 const serverBuild = Object.keys(serverWebpackConfig.entry).length !== 0 ? webpack(serverWebpackConfig) : null
 
-
-gulp.task('run', [ 'clean' ], () => {
+function watch () {
   const buildStatus = {
     browserBuildDone: !browserBuild,
     serverBuildDone: !serverBuild,
@@ -74,7 +88,8 @@ gulp.task('run', [ 'clean' ], () => {
     buildStatus.browserBuildDone = true
     checkAllDone()
   }))
-})
 
-gulp.task('clean', () => del([ serverWebpackConfig.output.path + '/**', browserWebpackConfig.output.path + '/**' ], {force: true}))
+}
+
+exports.run = series(clean, watch)
 

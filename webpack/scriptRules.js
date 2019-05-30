@@ -9,6 +9,7 @@ module.exports = function (node=false, targets) {
   const options = node ? {
     modules: false,
     useBuiltIns: "usage",
+    corejs: 3,
     targets: { node: "10.13.0" },
   } : { targets: targets || '> 0.25%, not dead' }
 
