@@ -1,10 +1,10 @@
 {
   "name": "@app-proto/ify",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "app-proto scaffold utils.",
   "main": "index.js",
   "dependencies": {
-    "@babel/core": "^7.4.5",
+    "@babel/core": "^7.5.5",
     "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
@@ -26,7 +26,7 @@
     "nunjucks": "^3.2.0",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
-    "postcss-preset-env": "^6.6.0",
+    "postcss-preset-env": "^6.7.0",
     "precss": "^4.0.0",
     "style-loader": "^0.23.1",
     "svg-inline-loader": "^0.8.0",
